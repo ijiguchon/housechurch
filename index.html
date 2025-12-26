@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가정교회의 핵심 가치와 100가지 지혜 | 시애틀지구촌교회</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Nanum+Myeongjo:wght@400;700;800&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --gold-light: #F4E4BA;
+            --cream: #FFF9F1;
+            --brown: #4A3E3E;
+            --green: #2D5A27;
+            --green-light: #8DAA91;
+            --red: #8B0000;
+            --red-soft: #A52A2A;
+            --blue: #1E3A5F;
+            --purple: #4A2C6A;
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            overflow: hidden;
+            height: 100vh;
+        }
+        
+        /* Slide Container */
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+            padding: 60px;
+            text-align: center;
+        }
+        
+        .slide.active {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+        
+        /* Particles */
+        .particles {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            animation: floatUp linear infinite;
+        }
+        
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+        
+        @keyframes shimmer {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
+        }
+        
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); }
+            50% { box-shadow: 0 0 60px rgba(212, 175, 55, 0.6); }
+        }
+        
+        @keyframes warning-pulse {
+            0%, 100% { box-shadow: 0 0 30px rgba(139, 0, 0, 0.3); }
+            50% { box-shadow: 0 0 60px rgba(139, 0, 0, 0.6); }
+        }
+        
+        /* Backgrounds */
+        .bg-dark { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); }
+        .bg-gospel { background: linear-gradient(135deg, #1a472a 0%, #2d5a27 50%, #3d7c47 100%); }
+        .bg-conscience { background: linear-gradient(135deg, #2c1810 0%, #4a2c2a 50%, #6b3a3a 100%); }
+        .bg-warning { background: linear-gradient(135deg, #1a0505 0%, #3d0000 50%, #5a1010 100%); }
+        .bg-shepherd { background: linear-gradient(135deg, #1a1a3e 0%, #2a2a5a 50%, #3a3a7a 100%); }
+        .bg-gold { background: linear-gradient(135deg, #2d2410 0%, #4a3c1a 50%, #6b5a2a 100%); }
+        
+        /* Typography */
+        .dream-tag {
+            color: var(--gold);
+            font-size: 20px;
+            letter-spacing: 4px;
+            font-family: 'Nanum Myeongjo', serif;
+            margin-bottom: 8px;
+        }
+        
+        .dream-tag-en {
+            color: rgba(212, 175, 55, 0.6);
+            font-size: 12px;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+        }
+        
+        .main-title {
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: clamp(28px, 4.5vw, 58px);
+            font-weight: 800;
+            text-align: center;
+            line-height: 1.4;
+            text-shadow: 0 0 60px rgba(255,255,255,0.1);
+        }
+        
+        .gold-text {
+            background: linear-gradient(135deg, #FFD700, #FFA500, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        
+        .section-number {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(80px, 12vw, 140px);
+            font-weight: 900;
+            position: absolute;
+            top: 30px;
+            right: 50px;
+            opacity: 0.06;
+            line-height: 1;
+        }
+        
+        .section-label {
+            display: inline-block;
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+        
+        .label-gospel { background: rgba(45, 90, 39, 0.4); border: 2px solid var(--green); }
+        .label-conscience { background: rgba(212, 175, 55, 0.2); border: 2px solid var(--gold); }
+        .label-warning { background: rgba(139, 0, 0, 0.3); border: 2px solid var(--red); color: #ff6b6b; }
+        .label-shepherd { background: rgba(74, 44, 106, 0.3); border: 2px solid #9370DB; }
+        
+        .verse-box {
+            max-width: 950px;
+            padding: 35px 45px;
+            border-radius: 20px;
+            margin: 25px 0;
+            position: relative;
+            background: rgba(255,255,255,0.05);
+            border-left: 5px solid var(--gold);
+        }
+        
+        .verse-box.warning {
+            border-left-color: var(--red);
+            background: rgba(139, 0, 0, 0.15);
+        }
+        
+        .verse-text {
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: clamp(18px, 2.5vw, 28px);
+            font-weight: 700;
+            line-height: 1.7;
+            word-break: keep-all;
+        }
+        
+        .verse-ref {
+            font-size: 15px;
+            margin-top: 18px;
+            opacity: 0.7;
+            font-style: italic;
+        }
+        
+        .subtitle {
+            font-size: clamp(15px, 1.8vw, 20px);
+            opacity: 0.85;
+            margin-top: 20px;
+            max-width: 850px;
+            text-align: center;
+            line-height: 1.7;
+        }
+        
+        .subtitle-en {
+            font-size: clamp(13px, 1.5vw, 17px);
+            opacity: 0.6;
+            margin-top: 12px;
+            font-style: italic;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Value Cards */
+        .value-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 950px;
+            margin-top: 35px;
+        }
+        
+        .value-card {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 28px 22px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.12);
+        }
+        
+        .value-card-icon {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+        
+        .value-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--gold);
+        }
+        
+        .value-card p {
+            font-size: 13px;
+            opacity: 0.75;
+            line-height: 1.5;
+        }
+        
+        /* Conscience Diagram */
+        .conscience-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .stage-box {
+            background: rgba(255,255,255,0.95);
+            color: var(--brown);
+            padding: 20px 18px;
+            border-radius: 16px;
+            width: 200px;
+            text-align: left;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .stage-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+        
+        .stage-box.final {
+            background: #1a0000;
+            color: #fff;
+            border: 3px solid var(--red);
+            animation: warning-pulse 2s ease-in-out infinite;
+        }
+        
+        .stage-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 900;
+            opacity: 0.15;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+        }
+        
+        .stage-title {
+            font-size: 16px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+        
+        .stage-title-en {
+            font-size: 11px;
+            opacity: 0.6;
+            margin-bottom: 8px;
+        }
+        
+        .stage-voice {
+            font-size: 12px;
+            font-style: italic;
+            opacity: 0.8;
+            padding-top: 10px;
+            border-top: 1px dashed rgba(0,0,0,0.2);
+            line-height: 1.4;
+        }
+        
+        .stage-box.final .stage-voice {
+            border-color: rgba(255,255,255,0.2);
+        }
+        
+        .stage-arrow {
+            font-size: 24px;
+            color: var(--red-soft);
+            opacity: 0.6;
+        }
+        
+        .center-shipwreck {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0a0000, #2a0000);
+            border: 5px solid var(--red);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            animation: warning-pulse 2s ease-in-out infinite;
+            margin: 0 15px;
+        }
+        
+        .shipwreck-icon {
+            font-size: 45px;
+            margin-bottom: 5px;
+        }
+        
+        .shipwreck-text {
+            font-size: 12px;
+            font-weight: 800;
+            text-align: center;
+            line-height: 1.3;
+        }
+        
+        /* Shepherd Glory */
+        .glory-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            max-width: 850px;
+            margin-top: 35px;
+        }
+        
+        .glory-item {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(147, 112, 219, 0.3);
+            border-radius: 20px;
+            padding: 28px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .glory-item:hover {
+            background: rgba(147, 112, 219, 0.15);
+            transform: scale(1.02);
+        }
+        
+        .glory-icon {
+            font-size: 45px;
+            margin-bottom: 12px;
+        }
+        
+        .glory-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #DDA0DD;
+        }
+        
+        .glory-desc {
+            font-size: 14px;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        /* Navigation Chapters */
+        .chapter-nav {
+            display: flex;
+            gap: 12px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .chapter-btn {
+            padding: 12px 20px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .chapter-btn:hover {
+            background: var(--gold);
+            color: #000;
+        }
+        
+        .chapter-btn span {
+            font-size: 18px;
+        }
+        
+        /* Four Pillars Overview */
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            max-width: 1000px;
+            margin-top: 40px;
+        }
+        
+        .pillar-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 25px 18px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .pillar-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .pillar-card.gospel { border-bottom: 4px solid var(--green); }
+        .pillar-card.conscience { border-bottom: 4px solid var(--gold); }
+        .pillar-card.warning { border-bottom: 4px solid var(--red); }
+        .pillar-card.shepherd { border-bottom: 4px solid #9370DB; }
+        
+        .pillar-icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+        
+        .pillar-title {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        
+        .pillar-subtitle {
+            font-size: 12px;
+            opacity: 0.7;
+        }
+        
+        /* Progress & Controls */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), #FFA500);
+            z-index: 1000;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 15px var(--gold);
+        }
+        
+        #controls {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 25px;
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, transparent 100%);
+            z-index: 1000;
+            transition: opacity 0.5s;
+        }
+        
+        #controls.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .controls-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .slide-counter {
+            text-align: center;
+            font-size: 16px;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 15px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .control-buttons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        
+        .control-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .control-btn:hover {
+            background: rgba(255,255,255,0.25);
+            transform: scale(1.1);
+        }
+        
+        .control-btn.play-btn {
+            width: 60px;
+            height: 60px;
+            background: var(--gold);
+            font-size: 22px;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
+        }
+        
+        .control-btn.play-btn:hover {
+            background: #FFA500;
+        }
+        
+        .quick-nav {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .quick-btn {
+            padding: 8px 14px;
+            border-radius: 20px;
+            border: none;
+            background: rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.7);
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quick-btn:hover, .quick-btn.active {
+            background: var(--gold);
+            color: #000;
+        }
+        
+        .keyboard-hint {
+            text-align: center;
+            color: rgba(255,255,255,0.35);
+            font-size: 11px;
+            margin-top: 12px;
+        }
+        
+        /* Logo */
+        #logo {
+            position: fixed;
+            top: 18px;
+            left: 18px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        
+        .logo-text h4 {
+            font-size: 13px;
+            font-weight: 700;
+        }
+        
+        .logo-text p {
+            font-size: 10px;
+            opacity: 0.6;
+        }
+        
+        /* Responsive */
+        @media (max-width: 900px) {
+            .slide { padding: 40px 25px; }
+            .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+            .value-cards { grid-template-columns: 1fr; }
+            .glory-grid { grid-template-columns: 1fr; }
+            .conscience-diagram { flex-direction: column; }
+            .stage-box { width: 100%; max-width: 280px; }
+            .stage-arrow { transform: rotate(90deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- 🎵 배경음악 -->
+    <audio id="bgm" loop>
+        <source src="http://index.ccast.net/home/select/ED19DA776A702A664D63361279D61727365FD3758114688/8114688" type="audio/mpeg">
+    </audio>
+    
+    <!-- 🎵 음악 버튼 (오른쪽 위) -->
+    <button id="music-btn" onclick="toggleMusic()" 
+            style="position:fixed; top:20px; right:80px; z-index:9999;
+                   width:50px; height:50px; border-radius:50%; border:none;
+                   background:rgba(212,175,55,0.9); color:#000; font-size:22px;
+                   cursor:pointer; box-shadow:0 4px 15px rgba(0,0,0,0.3);
+                   transition: all 0.3s; display:flex; align-items:center; 
+                   justify-content:center;">
+        🎵
+    </button>
+    
+    <script>
+        let musicPlaying = false;
+        const bgm = document.getElementById('bgm');
+        const musicBtn = document.getElementById('music-btn');
+        
+        function toggleMusic() {
+            if (musicPlaying) {
+                bgm.pause();
+                musicBtn.textContent = '🎵';
+                musicBtn.style.background = 'rgba(212,175,55,0.9)';
+                musicPlaying = false;
+            } else {
+                bgm.play();
+                musicBtn.textContent = '🔊';
+                musicBtn.style.background = 'rgba(100,200,100,0.9)';
+                musicPlaying = true;
+            }
+        }
+    </script>
+    
+    <div id="progress-bar"></div>
+    
+    <div id="logo">
+        <div class="logo-icon">🏠</div>
+        <div class="logo-text">
+            <h4>시애틀지구촌교회</h4>
+            <p>가정교회 사역부</p>
+        </div>
+    </div>
+    
+    <div id="presentation"></div>
+    
+    <div id="controls">
+        <div class="controls-inner">
+            <div class="slide-counter">
+                <span id="current-slide">1</span> / <span id="total-slides">0</span>
+            </div>
+            <div class="control-buttons">
+                <button class="control-btn" onclick="goToSlide(0)" title="처음">⏮</button>
+                <button class="control-btn" onclick="prevSlide()" title="이전">◀</button>
+                <button class="control-btn play-btn" onclick="togglePlay()" id="play-btn" title="재생/정지">▶</button>
+                <button class="control-btn" onclick="nextSlide()" title="다음">▶</button>
+                <button class="control-btn" onclick="goToSlide(totalSlides-1)" title="마지막">⏭</button>
+                <button class="control-btn" onclick="toggleFullscreen()" title="전체화면">⛶</button>
+            </div>
+            <div class="quick-nav" id="quickNav"></div>
+            <p class="keyboard-hint">키보드: ← → 이동 | Space 다음 | P 재생/정지 | F 전체화면</p>
+        </div>
+    </div>
+
+    <script>
+        // 100가지 지혜 데이터
+        const wisdomData = [
+            // 영적 성장 (1-25)
+            { cat: "영적 성장", catEn: "Spiritual Growth", ko: "가정교회는 신약교회의 본질을 회복하는 사역입니다.", en: "House church is a ministry that restores the essence of the New Testament church." },
+            { cat: "영적 성장", catEn: "Spiritual Growth", ko: "교회의 존재 목적은 영혼 구원하여 제자 만드는 것입니다.", en: "The purpose of the church's existence is to save souls and make disciples." },
+            { cat: "영적 성장", catEn: "Spiritual Growth", ko: "목장은 가정집에서 모이는 작은 교회입니다.", en: "Mokjang is a small church that meets in a home." },
+            { cat: "영적 성장", catEn: "Spiritual Growth", ko: "기도는 목장 사역의 영적 동력이자 성공 비결입니다.", en: "Prayer is the spiritual engine and the secret to success in Mokjang ministry." },
+            { cat: "영적 성장", catEn: "Spiritual Growth", ko: "기도 응답은 하나님이 살아계심을 경험하는 가장 확실한 통로입니다.", en: "Answered prayer is the surest way to experience that God is alive." },
+            { cat: "영적 성장", catEn: "Spiritual Growth", ko: "신앙생활의 완성은 지식 전달이 아닌 삶의 전수에 있습니다.", en: "The completion of faith is in the transfer of life, not just the delivery of knowledge." },
+            { cat: "영적 성장", catEn: "Spiritual Growth", ko: "목장은 하나님의 임재를 경험하는 거룩한 처소입니다.", en: "Mokjang is a holy place to experience the presence of God." },
+            { cat: "영적 성장", catEn: "Spiritual Growth", ko: "의심은 신앙의 반대가 아니라 확신으로 가는 정직한 과정입니다.", en: "Doubt is not the opposite of faith, but an honest process toward conviction." },
+            { cat: "영적 성장", catEn: "Spiritual Growth", ko: "하나님은 고난 속에서 우리를 순금처럼 빚어가고 계십니다.", en: "God is shaping us like pure gold in the midst of suffering." },
+            { cat: "영적 성장", catEn: "Spiritual Growth", ko: "영적 성장은 말씀(知), 감정(情), 의지(意)의 균형 잡힌 터치로 이루어집니다.", en: "Spiritual growth occurs through a balanced touch of Word, Emotion, and Will." },
+            { cat: "영적 성장", catEn: "Spiritual Growth", ko: "기도는 시간과 장소를 정해 나의 것을 희생하여 드려야 효과가 있습니다.", en: "Prayer is effective when offered at a set time and place with personal sacrifice." },
+            { cat: "영적 성장", catEn: "Spiritual Growth", ko: "목자 사역의 최고 수혜자는 바로 목자 자신입니다.", en: "The greatest beneficiary of the shepherd's ministry is the shepherd themselves." },
+            { cat: "영적 성장", catEn: "Spiritual Growth", ko: "영혼 구원에 초점을 두지 않는 목장은 결국 침체됩니다.", en: "A Mokjang that does not focus on saving souls will eventually stagnate." },
+            { cat: "영적 성장", catEn: "Spiritual Growth", ko: "신앙은 보고 배우는 모델링(Modeling) 시스템입니다.", en: "Faith is a modeling system where you see and learn." },
+            { cat: "영적 성장", catEn: "Spiritual Growth", ko: "기적은 하나님 나라의 상식이 되는 공동체에서 일어납니다.", en: "Miracles happen in a community where the Kingdom of God becomes common sense." },
+            { cat: "영적 성장", catEn: "Spiritual Growth", ko: "성령님은 우리가 세운 목표와 전략을 통해 인도하십니다.", en: "The Holy Spirit guides us through the goals and strategies we set." },
+            { cat: "영적 성장", catEn: "Spiritual Growth", ko: "영적 권위는 군림이 아닌 섬김과 기도에서 나옵니다.", en: "Spiritual authority comes from service and prayer, not from dominance." },
+            { cat: "영적 성장", catEn: "Spiritual Growth", ko: "목장은 세상을 향해 시선을 돌리게 하는 선교적 전초기지입니다.", en: "Mokjang is a missional outpost that turns our gaze toward the world." },
+            { cat: "영적 성장", catEn: "Spiritual Growth", ko: "구원의 확신이 있어야 전도의 열정이 생깁니다.", en: "Passion for evangelism arises when there is assurance of salvation." },
+            { cat: "영적 성장", catEn: "Spiritual Growth", ko: "예배는 하나님께 나의 결심을 드리는 행동 고백입니다.", en: "Worship is an action-confession of offering my commitment to God." },
+            { cat: "영적 성장", catEn: "Spiritual Growth", ko: "하나님의 뜻은 말씀과 기도를 통해 명확해집니다.", en: "God's will becomes clear through the Word and prayer." },
+            { cat: "영적 성장", catEn: "Spiritual Growth", ko: "영적 침체기는 더 큰 열매를 맺기 위한 충실기일 수 있습니다.", en: "A period of spiritual stagnation can be a season of preparation for greater fruit." },
+            { cat: "영적 성장", catEn: "Spiritual Growth", ko: "순종은 나를 하나님의 성품에 참여하게 하는 지름길입니다.", en: "Obedience is the shortcut to participating in God's character." },
+            { cat: "영적 성장", catEn: "Spiritual Growth", ko: "하나님은 우리의 신실함을 결과보다 귀하게 보십니다.", en: "God values our faithfulness more than the results." },
+            { cat: "영적 성장", catEn: "Spiritual Growth", ko: "선한 양심은 믿음이라는 보화를 담는 유일한 그릇입니다.", en: "A good conscience is the only vessel that can hold the treasure of faith." },
+            // 관계의 축복 (26-50)
+            { cat: "관계의 축복", catEn: "Blessing of Community", ko: "목장은 가족 그 이상의 가족을 추구하는 공동체입니다.", en: "Mokjang is a community that pursues family beyond just biological family." },
+            { cat: "관계의 축복", catEn: "Blessing of Community", ko: "진정한 사귐(Koinonia)은 삶을 나눌 때 비로소 시작됩니다.", en: "True fellowship (Koinonia) begins only when life is shared." },
+            { cat: "관계의 축복", catEn: "Blessing of Community", ko: "비밀 보장은 목장 안의 신뢰와 친밀감의 기초입니다.", en: "Confidentiality is the foundation of trust and intimacy within the Mokjang." },
+            { cat: "관계의 축복", catEn: "Blessing of Community", ko: "목장은 세상 어디서도 나눌 수 없는 삶의 깊은 이야기를 나누는 곳입니다.", en: "Mokjang is where we share deep stories of life that cannot be shared anywhere else." },
+            { cat: "관계의 축복", catEn: "Blessing of Community", ko: "밥을 같이 먹는 것은 서로를 가족으로 받아들이는 행위입니다.", en: "Eating together is an act of accepting each other as family." },
+            { cat: "관계의 축복", catEn: "Blessing of Community", ko: "가르치거나 충고하지 않을 때 치유가 일어납니다.", en: "Healing happens when we refrain from teaching or unsolicited advice." },
+            { cat: "관계의 축복", catEn: "Blessing of Community", ko: "경청은 상대방의 존재를 존중하는 최고의 섬김입니다.", en: "Listening is the highest service of respecting another's presence." },
+            { cat: "관계의 축복", catEn: "Blessing of Community", ko: "목원은 섬김의 대상에서 점차 동역자로 자라나야 합니다.", en: "Mokjang members should grow from being served to becoming co-workers." },
+            { cat: "관계의 축복", catEn: "Blessing of Community", ko: "갈등은 서로를 더 깊이 이해하게 하는 성장 포인트입니다.", en: "Conflict is a growth point for understanding each other more deeply." },
+            { cat: "관계의 축복", catEn: "Blessing of Community", ko: "목장은 서로의 부족함을 인정하고 용납하는 훈련장입니다.", en: "Mokjang is a training ground for admitting and accepting each other's flaws." },
+            { cat: "관계의 축복", catEn: "Blessing of Community", ko: "진정한 리더십은 공동체의 필요를 자신의 필요보다 우선하는 것입니다.", en: "True leadership prioritizes the community's needs over one's own." },
+            { cat: "관계의 축복", catEn: "Blessing of Community", ko: "집을 오픈하는 것은 섬김의 특권에 동참하는 것입니다.", en: "Opening one's home is participating in the privilege of service." },
+            { cat: "관계의 축복", catEn: "Blessing of Community", ko: "형제들의 설거지는 가정교회 섬김의 아름다운 본보기입니다.", en: "Brothers doing the dishes is a beautiful example of service in the house church." },
+            { cat: "관계의 축복", catEn: "Blessing of Community", ko: "자녀와 신앙을 공유하는 올리브 블레싱은 대를 잇는 축복입니다.", en: "Olive Blessing, sharing faith with children, is a multi-generational blessing." },
+            { cat: "관계의 축복", catEn: "Blessing of Community", ko: "분가는 영혼 구원의 활력을 유지하는 생명의 법칙입니다.", en: "Multiplication is the law of life that maintains the vitality of soul saving." },
+            { cat: "관계의 축복", catEn: "Blessing of Community", ko: "목장은 잃어버린 영혼을 찾는 야전병원과 같습니다.", en: "Mokjang is like a field hospital for finding lost souls." },
+            { cat: "관계의 축복", catEn: "Blessing of Community", ko: "비신자는 논리보다 공동체의 따뜻한 분위기에 끌립니다.", en: "Non-believers are drawn to the warm atmosphere of community more than logic." },
+            { cat: "관계의 축복", catEn: "Blessing of Community", ko: "사소한 챙김이 사람의 마음을 여는 열쇠가 됩니다.", en: "Small acts of care become the keys to opening a person's heart." },
+            { cat: "관계의 축복", catEn: "Blessing of Community", ko: "목장 식구의 아픔은 나의 아픔이 되고, 기쁨은 나의 기쁨이 됩니다.", en: "The pain of a Mokjang member becomes my pain, and their joy becomes mine." },
+            { cat: "관계의 축복", catEn: "Blessing of Community", ko: "하나 되지 못하는 것은 영적 은혜를 가로막는 장애물입니다.", en: "Lack of unity is an obstacle that blocks spiritual grace." },
+            { cat: "관계의 축복", catEn: "Blessing of Community", ko: "목장은 신뢰와 사랑의 띠로 묶인 생명 공동체입니다.", en: "Mokjang is a life community bound by the ties of trust and love." },
+            { cat: "관계의 축복", catEn: "Blessing of Community", ko: "상호 책임(Accountability)은 양심의 부패를 막는 신앙적 방어선입니다.", en: "Mutual accountability is the spiritual defense line that prevents conscience decay." },
+            { cat: "관계의 축복", catEn: "Blessing of Community", ko: "공동체 안에서 정직할 때 비로소 자유를 누립니다.", en: "We enjoy true freedom only when we are honest within the community." },
+            { cat: "관계의 축복", catEn: "Blessing of Community", ko: "함께 울고 웃는 것이 예수님이 보여주신 삶의 방식입니다.", en: "Weeping and laughing together is the way of life shown by Jesus." },
+            { cat: "관계의 축복", catEn: "Blessing of Community", ko: "목장은 외로운 현대인들에게 영적 고향을 제공합니다.", en: "Mokjang provides a spiritual hometown for lonely modern people." },
+            // 인생의 지혜 (51-75)
+            { cat: "인생의 지혜", catEn: "Wisdom for Life", ko: "인생의 목적은 성공이 아니라 섬김에 있습니다.", en: "The purpose of life is not success, but service." },
+            { cat: "인생의 지혜", catEn: "Wisdom for Life", ko: "변화는 거창한 결심보다 작은 헌신에서 시작됩니다.", en: "Change starts from small commitments rather than grand resolutions." },
+            { cat: "인생의 지혜", catEn: "Wisdom for Life", ko: "나를 힘들게 하는 사람은 나의 인격을 다듬기 위해 보낸 천사일 수 있습니다.", en: "The person who makes life difficult for you may be an angel sent to refine your character." },
+            { cat: "인생의 지혜", catEn: "Wisdom for Life", ko: "정직은 인생의 최선이자 가장 강력한 정책입니다.", en: "Honesty is the best and most powerful policy in life." },
+            { cat: "인생의 지혜", catEn: "Wisdom for Life", ko: "목표가 없는 인생은 목표가 있는 인생을 위해 일하게 됩니다.", en: "A life without goals ends up working for a life that has them." },
+            { cat: "인생의 지혜", catEn: "Wisdom for Life", ko: "인내와 성실은 어떤 재능보다 강력한 인생의 무기입니다.", en: "Patience and sincerity are more powerful life weapons than any talent." },
+            { cat: "인생의 지혜", catEn: "Wisdom for Life", ko: "자신의 약점을 드러내는 것이 진정한 용기이자 성숙입니다.", en: "Revealing one's weaknesses is true courage and maturity." },
+            { cat: "인생의 지혜", catEn: "Wisdom for Life", ko: "양심의 무시는 믿음의 파선으로 가는 첫 번째 경고등입니다.", en: "Ignoring your conscience is the first warning light toward the shipwreck of faith." },
+            { cat: "인생의 지혜", catEn: "Wisdom for Life", ko: "기다림은 상대를 향한 사랑의 가장 깊은 표현입니다.", en: "Waiting is the deepest expression of love toward another." },
+            { cat: "인생의 지혜", catEn: "Wisdom for Life", ko: "고난은 우리를 순금으로 만드는 하나님의 단련 방식입니다.", en: "Suffering is God's way of refining us into pure gold." },
+            { cat: "인생의 지혜", catEn: "Wisdom for Life", ko: "감사를 주제로 삼을 때 인생의 부정적인 흐름이 끊깁니다.", en: "When gratitude is the theme, the negative flow of life is broken." },
+            { cat: "인생의 지혜", catEn: "Wisdom for Life", ko: "시간 관리는 삶의 우선순위를 정하는 영적 기술입니다.", en: "Time management is the spiritual skill of setting life's priorities." },
+            { cat: "인생의 지혜", catEn: "Wisdom for Life", ko: "내면의 싸움에서 이길 때 외부의 환경도 이길 수 있습니다.", en: "When you win the battle within, you can overcome external circumstances." },
+            { cat: "인생의 지혜", catEn: "Wisdom for Life", ko: "겸손은 하나님께 나아가는 가장 빠른 길입니다.", en: "Humility is the fastest way to approach God." },
+            { cat: "인생의 지혜", catEn: "Wisdom for Life", ko: "타인의 미숙함을 용납하는 용량이 곧 나의 성숙도입니다.", en: "The capacity to tolerate others' immaturity is the measure of my own maturity." },
+            { cat: "인생의 지혜", catEn: "Wisdom for Life", ko: "삶은 소유가 아니라 누구와 동행하느냐에 따라 결정됩니다.", en: "Life is determined not by what you own, but by who you walk with." },
+            { cat: "인생의 지혜", catEn: "Wisdom for Life", ko: "자기표현의 욕구가 채워질 때 인간은 건강해집니다.", en: "Humans become healthy when their need for self-expression is met." },
+            { cat: "인생의 지혜", catEn: "Wisdom for Life", ko: "비교는 행복을 앗아가는 가장 나쁜 습관입니다.", en: "Comparison is the worst habit that robs us of happiness." },
+            { cat: "인생의 지혜", catEn: "Wisdom for Life", ko: "인사를 환하게 잘하는 것이 관계의 시작이자 리더십입니다.", en: "Greeting others brightly is the start of relationship and leadership." },
+            { cat: "인생의 지혜", catEn: "Wisdom for Life", ko: "과거에 매이지 않고 미래 지향적으로 사는 것이 복음적 삶입니다.", en: "Living for the future rather than being bound by the past is the Gospel life." },
+            { cat: "인생의 지혜", catEn: "Wisdom for Life", ko: "사소한 일에 목숨 걸지 말고 영원한 가치에 집중하십시오.", en: "Do not risk everything for trivial matters; focus on eternal values." },
+            { cat: "인생의 지혜", catEn: "Wisdom for Life", ko: "인생의 마지막에 남는 것은 내가 사랑한 사람들뿐입니다.", en: "At the end of life, only the people I loved will remain." },
+            { cat: "인생의 지혜", catEn: "Wisdom for Life", ko: "여유 있게 그러나 확실하게 나아가는 것이 지혜입니다.", en: "Moving slowly but surely is true wisdom." },
+            { cat: "인생의 지혜", catEn: "Wisdom for Life", ko: "감탄은 내 마음의 가시를 제거하는 묘약입니다.", en: "Wonder is the medicine that removes the thorns from my heart." },
+            { cat: "인생의 지혜", catEn: "Wisdom for Life", ko: "인생은 하나님의 은혜 없이는 단 한 순간도 살 수 없는 의존적 존재입니다.", en: "Life is a dependent existence that cannot survive for a single moment without God's grace." },
+            // 리더십 (76-100)
+            { cat: "리더십", catEn: "Leadership", ko: "진정한 리더십은 남을 성공시켜 주는 데 있습니다.", en: "True leadership lies in making others successful." },
+            { cat: "리더십", catEn: "Leadership", ko: "목자는 직분이 아니라 영혼을 돌보는 사역입니다.", en: "Shepherd is not a title, but a ministry of caring for souls." },
+            { cat: "리더십", catEn: "Leadership", ko: "섬기는 리더십이 영적인 권위를 세우는 기반이 됩니다.", en: "Servant leadership is the foundation for establishing spiritual authority." },
+            { cat: "리더십", catEn: "Leadership", ko: "리더는 위임을 통해 동역자를 세워야 합니다.", en: "A leader must build co-workers through delegation." },
+            { cat: "리더십", catEn: "Leadership", ko: "팀워크는 1+1을 11로 만드는 시너지의 힘입니다.", en: "Teamwork is the power of synergy that turns 1+1 into 11." },
+            { cat: "리더십", catEn: "Leadership", ko: "최고의 리더는 질문을 통해 스스로 답을 찾게 돕는 사람입니다.", en: "The best leader helps others find their own answers through questions." },
+            { cat: "리더십", catEn: "Leadership", ko: "소명의식이 있을 때 끝까지 완주할 수 있습니다.", en: "You can finish the race only when you have a sense of calling." },
+            { cat: "리더십", catEn: "Leadership", ko: "리더의 희생이 공동체에 생명력을 불어넣습니다.", en: "A leader's sacrifice breathes life into the community." },
+            { cat: "리더십", catEn: "Leadership", ko: "일관성 있는 삶이 사람들의 신뢰를 얻는 리더십의 기초입니다.", en: "A consistent life is the basis of leadership that earns people's trust." },
+            { cat: "리더십", catEn: "Leadership", ko: "리더는 영적 정체성을 분명히 해야 흔들리지 않습니다.", en: "A leader must clarify their spiritual identity to remain unshaken." },
+            { cat: "리더십", catEn: "Leadership", ko: "재생산하지 않는 리더십은 결국 소멸됩니다.", en: "Leadership that does not reproduce will eventually vanish." },
+            { cat: "리더십", catEn: "Leadership", ko: "목양은 고된 작업이지만 가장 가치 있는 일입니다.", en: "Shepherding is hard work but the most valuable endeavor." },
+            { cat: "리더십", catEn: "Leadership", ko: "성숙한 리더는 자아가 죽고 주님이 사시는 삶을 보여줍니다.", en: "A mature leader demonstrates a life where self dies and the Lord lives." },
+            { cat: "리더십", catEn: "Leadership", ko: "리더의 열정은 공동체 전체로 전염됩니다.", en: "A leader's passion is contagious to the entire community." },
+            { cat: "리더십", catEn: "Leadership", ko: "진정성 있는 삶이 사람들의 영혼을 움직입니다.", en: "A life of authenticity moves the souls of others." },
+            { cat: "리더십", catEn: "Leadership", ko: "리더는 문제를 두려워하지 않고 성장 포인트로 삼습니다.", en: "A leader does not fear problems but uses them as growth points." },
+            { cat: "리더십", catEn: "Leadership", ko: "기도하는 리더 곁에는 하나님을 신뢰하는 사람들이 모입니다.", en: "People who trust God gather around a leader who prays." },
+            { cat: "리더십", catEn: "Leadership", ko: "리더십의 완성은 또 다른 리더를 세우는 것입니다.", en: "The completion of leadership is raising up another leader." },
+            { cat: "리더십", catEn: "Leadership", ko: "비전은 인생을 움직이는 GPS와 같습니다.", en: "Vision is like the GPS that moves your life." },
+            { cat: "리더십", catEn: "Leadership", ko: "핵심 가치는 폭풍 속에서도 흔들리지 않는 인생의 닻입니다.", en: "Core values are the anchor of life that remains unshaken in a storm." },
+            { cat: "리더십", catEn: "Leadership", ko: "실행이 없는 비전은 공상에 불과합니다.", en: "Vision without action is nothing but a fantasy." },
+            { cat: "리더십", catEn: "Leadership", ko: "리더는 사람을 사랑의 대상으로만 보아야 합니다.", en: "A leader must see people only as objects of love." },
+            { cat: "리더십", catEn: "Leadership", ko: "용서는 그리스도의 마음을 가진 리더가 보여줄 수 있는 최고의 능력입니다.", en: "Forgiveness is the greatest ability a leader with the heart of Christ can show." },
+            { cat: "리더십", catEn: "Leadership", ko: "천국의 상급을 바라보는 리더는 이 땅의 평가에 연연하지 않습니다.", en: "A leader looking toward heavenly rewards is not concerned with earthly evaluations." },
+            { cat: "리더십", catEn: "Leadership", ko: "\"성경대로\" 하는 리더십이 결국 세상을 변화시킵니다.", en: "Leadership according to \"the Bible\" eventually changes the world." }
+        ];
+
+        const categoryConfig = {
+            "영적 성장": { class: "cat-spiritual", color: "#FFD700", icon: "✝" },
+            "관계의 축복": { class: "cat-community", color: "#98FB98", icon: "🤝" },
+            "인생의 지혜": { class: "cat-wisdom", color: "#DDA0DD", icon: "💎" },
+            "리더십": { class: "cat-leadership", color: "#FF6B6B", icon: "👑" }
+        };
+
+        let currentSlide = 0;
+        let isPlaying = false;
+        let playInterval;
+        let totalSlides;
+
+        function generateSlides() {
+            const container = document.getElementById('presentation');
+            let html = '';
+            let slideIndex = 0;
+
+            // ========== SLIDE 0: TITLE ==========
+            html += `
+                <div class="slide bg-dark active" data-index="${slideIndex}">
+                    <div class="particles" id="particles-${slideIndex}"></div>
+                    <div style="font-size:70px; margin-bottom:20px; animation: pulse 2s infinite;">🏠</div>
+                    <p class="dream-tag">"주님이 꿈꾸시는 교회"</p>
+                    <p class="dream-tag-en">The Church the Lord Dreams Of</p>
+                    <h1 class="main-title">AI 시대의 영적 고향,<br><span class="gold-text">가정교회의 핵심 가치</span></h1>
+                    <p class="subtitle" style="margin-top:30px;">신약교회 회복 · 영혼 구원 · 제자 양성 · 착한 양심</p>
+                    <p class="subtitle-en">Restoring the New Testament Church · Saving Souls · Making Disciples · Good Conscience</p>
+                    <div style="margin-top:45px; text-align:center;">
+                        <p style="font-size:22px; font-weight:700;">시애틀지구촌교회 가정교회 사역부</p>
+                        <p style="font-size:13px; opacity:0.6; margin-top:8px;">Global Mission Church of Greater Seattle</p>
+                    </div>
+                </div>
+            `;
+            slideIndex++;
+
+            // ========== SLIDE 1: 4가지 핵심 가치 개요 ==========
+            html += `
+                <div class="slide bg-dark" data-index="${slideIndex}">
+                    <div class="particles" id="particles-${slideIndex}"></div>
+                    <p class="dream-tag">"성경대로 하는 교회"</p>
+                    <h1 class="main-title">가정교회 <span class="gold-text">4가지 핵심 가치</span></h1>
+                    <p class="subtitle">은혜의 복음 위에 세워진 신앙, 말씀의 기초 위에 놓인 양심</p>
+                    <div class="pillars-grid">
+                        <div class="pillar-card gospel" onclick="goToSlide(2)">
+                            <div class="pillar-icon">⛪</div>
+                            <div class="pillar-title">복음의 희망</div>
+                            <div class="pillar-subtitle">신약교회 회복</div>
+                        </div>
+                        <div class="pillar-card conscience" onclick="goToSlide(5)">
+                            <div class="pillar-icon">🏺</div>
+                            <div class="pillar-title">믿음의 그릇</div>
+                            <div class="pillar-subtitle">착한 양심</div>
+                        </div>
+                        <div class="pillar-card warning" onclick="goToSlide(8)">
+                            <div class="pillar-icon">⚠️</div>
+                            <div class="pillar-title">영적 경고</div>
+                            <div class="pillar-subtitle">양심 둔감화</div>
+                        </div>
+                        <div class="pillar-card shepherd" onclick="goToSlide(11)">
+                            <div class="pillar-icon">🌟</div>
+                            <div class="pillar-title">목자의 영광</div>
+                            <div class="pillar-subtitle">섬김의 특권</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            slideIndex++;
+
+            // ========== CHAPTER 1: 복음의 희망 (3 slides) ==========
+            // Slide 2: 복음의 희망 - 인트로
+            html += `
+                <div class="slide bg-gospel" data-index="${slideIndex}">
+                    <div class="particles" id="particles-${slideIndex}"></div>
+                    <div class="section-number">01</div>
+                    <div class="section-label label-gospel">CHAPTER 1</div>
+                    <h1 class="main-title"><span class="gold-text">복음의 희망</span><br>신약교회 회복</h1>
+                    <p class="subtitle">가정교회는 초대교회의 본질을 회복하여<br>영혼 구원과 제자 양성이라는 교회의 존재 목적을 실현합니다.</p>
+                    <p class="subtitle-en">House Church restores the essence of the early church,<br>fulfilling the purpose of saving souls and making disciples.</p>
+                </div>
+            `;
+            slideIndex++;
+
+            // Slide 3: 복음의 희망 - 말씀
+            html += `
+                <div class="slide bg-gospel" data-index="${slideIndex}">
+                    <div class="particles" id="particles-${slideIndex}"></div>
+                    <div class="section-number">01</div>
+                    <div class="section-label label-gospel">복음의 희망</div>
+                    <h1 class="main-title">교회의 <span class="gold-text">존재 목적</span></h1>
+                    <div class="verse-box">
+                        <p class="verse-text">"그러므로 너희는 가서 모든 민족을 제자로 삼아, 아버지와 아들과 성령의 이름으로 세례를 베풀고, 내가 너희에게 명령한 모든 것을 가르쳐 지키게 하여라."</p>
+                        <p class="verse-ref">— 마태복음 28:19-20 (표준새번역)</p>
+                    </div>
+                    <p class="subtitle">교회는 단순한 모임이 아닙니다. <strong>영혼을 구원하고, 제자를 세우는</strong> 거룩한 사명을 가진 공동체입니다.</p>
+                </div>
+            `;
+            slideIndex++;
+
+            // Slide 4: 복음의 희망 - 가치
+            html += `
+                <div class="slide bg-gospel" data-index="${slideIndex}">
+                    <div class="particles" id="particles-${slideIndex}"></div>
+                    <div class="section-number">01</div>
+                    <div class="section-label label-gospel">복음의 희망</div>
+                    <h1 class="main-title">가정교회가 추구하는 <span class="gold-text">3가지 본질</span></h1>
+                    <div class="value-cards">
+                        <div class="value-card">
+                            <div class="value-card-icon">⛪</div>
+                            <h3>신약교회 회복</h3>
+                            <p>초대교회의 생명력과 능력을 회복하여 세상을 변화시킵니다.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-card-icon">🙏</div>
+                            <h3>기도의 동력</h3>
+                            <p>기도는 목장 사역의 유일한 엔진이자 성공의 비결입니다.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-card-icon">🌱</div>
+                            <h3>삶의 전수</h3>
+                            <p>지식 전달이 아닌 삶으로 보여주는 모델링 시스템입니다.</p>
+                        </div>
+                    </div>
+                    <p class="subtitle" style="margin-top:30px;">"신앙생활의 완성은 지식 전달이 아닌 <strong>삶의 전수</strong>에 있습니다."</p>
+                </div>
+            `;
+            slideIndex++;
+
+            // ========== CHAPTER 2: 믿음의 그릇 - 착한 양심 (3 slides) ==========
+            // Slide 5: 믿음의 그릇 - 인트로
+            html += `
+                <div class="slide bg-conscience" data-index="${slideIndex}">
+                    <div class="particles" id="particles-${slideIndex}"></div>
+                    <div class="section-number">02</div>
+                    <div class="section-label label-conscience">CHAPTER 2</div>
+                    <h1 class="main-title"><span class="gold-text">믿음의 그릇</span><br>착한 양심</h1>
+                    <p class="subtitle">은혜와 희망은 반드시 하나님 말씀의 기초 위에 세워져야 합니다.<br>믿음은 <strong>착한 양심</strong>이라는 그릇에 담깁니다.</p>
+                    <p class="subtitle-en">Grace and hope must be built on the foundation of God's Word.<br>Faith is held in the vessel of a good conscience.</p>
+                </div>
+            `;
+            slideIndex++;
+
+            // Slide 6: 믿음의 그릇 - 핵심 말씀
+            html += `
+                <div class="slide bg-conscience" data-index="${slideIndex}">
+                    <div class="particles" id="particles-${slideIndex}"></div>
+                    <div class="section-number">02</div>
+                    <div class="section-label label-conscience">믿음의 그릇</div>
+                    <h1 class="main-title">양심과 믿음의 <span class="gold-text">유기적 관계</span></h1>
+                    <div class="verse-box">
+                        <p class="verse-text">"믿음과 착한 양심을 가지십시오. 어떤 사람들은 착한 양심을 버려서, 그 믿음이 파선하였습니다."</p>
+                        <p class="verse-ref">— 디모데전서 1:19 (표준새번역)</p>
+                    </div>
+                    <p class="subtitle"><strong>상호 의존성:</strong> 믿음은 양심이라는 그릇에 담깁니다.<br>그릇(양심)이 깨지면 내용물(믿음)도 쏟아집니다.</p>
+                    <p class="subtitle-en">Faith and conscience are inseparably linked. When the vessel breaks, the content spills.</p>
+                </div>
+            `;
+            slideIndex++;
+
+            // Slide 7: 믿음의 그릇 - 신율적 양심
+            html += `
+                <div class="slide bg-conscience" data-index="${slideIndex}">
+                    <div class="particles" id="particles-${slideIndex}"></div>
+                    <div class="section-number">02</div>
+                    <div class="section-label label-conscience">믿음의 그릇</div>
+                    <h1 class="main-title">바울의 <span class="gold-text">양심 신학</span></h1>
+                    <div class="value-cards">
+                        <div class="value-card">
+                            <div class="value-card-icon">🔥</div>
+                            <h3>성령과 연합</h3>
+                            <p>"내 양심이 성령 안에서 나와 더불어 증언합니다" (롬 9:1)</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-card-icon">📖</div>
+                            <h3>역동적 정화</h3>
+                            <p>복음 진리로 끊임없이 교육되고 정화되어야 합니다 (히 9:14)</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-card-icon">🧭</div>
+                            <h3>영적 나침반</h3>
+                            <p>단순한 도덕 판단을 넘어 하나님을 향한 내면의 나침반입니다.</p>
+                        </div>
+                    </div>
+                    <p class="subtitle" style="margin-top:25px;">착한 양심은 제자도의 지속성을 가능하게 하는 <strong>내적 엔진</strong>입니다.</p>
+                </div>
+            `;
+            slideIndex++;
+
+            // ========== CHAPTER 3: 영적 경고 - 양심 둔감화 (3 slides) ==========
+            // Slide 8: 영적 경고 - 인트로
+            html += `
+                <div class="slide bg-warning" data-index="${slideIndex}">
+                    <div class="particles" id="particles-${slideIndex}"></div>
+                    <div class="section-number">03</div>
+                    <div class="section-label label-warning">CHAPTER 3</div>
+                    <h1 class="main-title" style="color:#ff6b6b;"><span style="color:#fff;">영적 경고:</span><br>양심 둔감화의 위험</h1>
+                    <p class="subtitle">제자도 이탈은 갑작스러운 사고가 아닙니다.<br><strong>점진적인 양심 둔감화</strong>를 거쳐 붕괴에 이르는 과정입니다.</p>
+                    <p class="subtitle-en">Departure from discipleship is not sudden—it's a gradual process of conscience desensitization.</p>
+                </div>
+            `;
+            slideIndex++;
+
+            // Slide 9: 양심 둔감화 4단계
+            html += `
+                <div class="slide bg-warning" data-index="${slideIndex}">
+                    <div class="particles" id="particles-${slideIndex}"></div>
+                    <div class="section-number">03</div>
+                    <div class="section-label label-warning">영적 경고</div>
+                    <h1 class="main-title">양심 둔감화의 <span style="color:#ff6b6b;">4단계</span></h1>
+                    <div class="conscience-diagram">
+                        <div class="stage-box">
+                            <div class="stage-num">01</div>
+                            <div class="stage-title">무시 (Ignoring)</div>
+                            <div class="stage-title-en">양심의 작은 경고를 억누름</div>
+                            <div class="stage-voice">"지금은 바쁘니까... 나중에 회개하면 돼."</div>
+                        </div>
+                        <div class="stage-arrow">→</div>
+                        <div class="stage-box">
+                            <div class="stage-num">02</div>
+                            <div class="stage-title">합리화 (Rationalizing)</div>
+                            <div class="stage-title-en">상황 논리로 죄를 정당화</div>
+                            <div class="stage-voice">"다른 사람들도 다 하잖아. 상황이 어쩔 수 없어."</div>
+                        </div>
+                        <div class="stage-arrow">→</div>
+                        <div class="stage-box">
+                            <div class="stage-num">03</div>
+                            <div class="stage-title">둔감화 (Desensitizing)</div>
+                            <div class="stage-title-en">죄책감이 사라지고 일상이 됨</div>
+                            <div class="stage-voice">"이제는 별로 찔리지도 않아. 이 정도는 괜찮지 않아?"</div>
+                        </div>
+                        <div class="stage-arrow">→</div>
+                        <div class="stage-box final">
+                            <div class="stage-num">04</div>
+                            <div class="stage-title" style="color:#ff6b6b;">화인 (Searing)</div>
+                            <div class="stage-title-en" style="color:#ff9999;">영적 감각의 완전한 소멸</div>
+                            <div class="stage-voice">"뭐가 문제라는 거야? 다들 너무 예민한 거 아니야?"</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            slideIndex++;
+
+            // Slide 10: 파선의 경고와 해결책
+            html += `
+                <div class="slide bg-warning" data-index="${slideIndex}">
+                    <div class="particles" id="particles-${slideIndex}"></div>
+                    <div class="section-number">03</div>
+                    <div class="section-label label-warning">영적 경고</div>
+                    <h1 class="main-title">믿음의 <span style="color:#ff6b6b;">파선</span>을 막는 길</h1>
+                    <div class="verse-box warning">
+                        <p class="verse-text" style="color:#ffcccc;">"양심을 버리면 믿음이 파선한다.<br>따라서 지속적 제자도의 핵심은<br><strong style="color:#fff;">착한 양심을 민감하게 유지하는 것</strong>이다."</p>
+                        <p class="verse-ref" style="color:#ff9999;">— 바울의 양심 신학 핵심 논지</p>
+                    </div>
+                    <div class="value-cards" style="max-width:800px;">
+                        <div class="value-card" style="border-bottom:3px solid var(--red);">
+                            <div class="value-card-icon">🤝</div>
+                            <h3 style="color:#ff9999;">상호 책임</h3>
+                            <p>혼자서는 양심을 지키기 어렵습니다. 목장에서 삶을 나눌 때 양심이 깨어납니다.</p>
+                        </div>
+                        <div class="value-card" style="border-bottom:3px solid var(--red);">
+                            <div class="value-card-icon">💬</div>
+                            <h3 style="color:#ff9999;">정직한 나눔</h3>
+                            <p>안전지대에서 솔직하게 자기를 드러내는 것이 양심 부패를 막습니다.</p>
+                        </div>
+                        <div class="value-card" style="border-bottom:3px solid var(--red);">
+                            <div class="value-card-icon">📋</div>
+                            <h3 style="color:#ff9999;">정기적 점검</h3>
+                            <p>'언감사가' 코칭을 통한 정기적 양심 점검이 필요합니다.</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            slideIndex++;
+
+            // ========== CHAPTER 4: 목자의 영광 (3 slides) ==========
+            // Slide 11: 목자의 영광 - 인트로
+            html += `
+                <div class="slide bg-shepherd" data-index="${slideIndex}">
+                    <div class="particles" id="particles-${slideIndex}"></div>
+                    <div class="section-number">04</div>
+                    <div class="section-label label-shepherd">CHAPTER 4</div>
+                    <h1 class="main-title"><span class="gold-text">목자의 영광</span><br>섬김의 특권</h1>
+                    <p class="subtitle">목자 사역은 직분이 아니라 <strong>영혼을 돌보는 거룩한 사명</strong>입니다.<br>이 땅에서 가장 가치 있는 일에 동참하는 특권입니다.</p>
+                    <p class="subtitle-en">Shepherding is not a title, but a sacred calling to care for souls—<br>a privilege to participate in the most valuable work on earth.</p>
+                </div>
+            `;
+            slideIndex++;
+
+            // Slide 12: 목자의 영광 - 말씀
+            html += `
+                <div class="slide bg-shepherd" data-index="${slideIndex}">
+                    <div class="particles" id="particles-${slideIndex}"></div>
+                    <div class="section-number">04</div>
+                    <div class="section-label label-shepherd">목자의 영광</div>
+                    <h1 class="main-title">선한 목자의 <span class="gold-text">본</span></h1>
+                    <div class="verse-box">
+                        <p class="verse-text">"나는 선한 목자입니다. 선한 목자는 양들을 위하여 자기 목숨을 버립니다."</p>
+                        <p class="verse-ref">— 요한복음 10:11 (표준새번역)</p>
+                    </div>
+                    <p class="subtitle">목자 사역의 최고 수혜자는 <strong>바로 목자 자신</strong>입니다.<br>섬기면서 가장 먼저 은혜를 받고, 가장 깊이 성장합니다.</p>
+                </div>
+            `;
+            slideIndex++;
+
+            // Slide 13: 목자의 영광 - 4가지 영광
+            html += `
+                <div class="slide bg-shepherd" data-index="${slideIndex}">
+                    <div class="particles" id="particles-${slideIndex}"></div>
+                    <div class="section-number">04</div>
+                    <div class="section-label label-shepherd">목자의 영광</div>
+                    <h1 class="main-title">목자·목녀에게 주어진 <span class="gold-text">4가지 영광</span></h1>
+                    <div class="glory-grid">
+                        <div class="glory-item">
+                            <div class="glory-icon">👑</div>
+                            <div class="glory-title">영혼 구원의 동역자</div>
+                            <div class="glory-desc">하나님의 가장 큰 관심사인 영혼 구원 사역에 직접 동참하는 영광</div>
+                        </div>
+                        <div class="glory-item">
+                            <div class="glory-icon">🎵</div>
+                            <div class="glory-title">사랑의 오케스트라</div>
+                            <div class="glory-desc">목회자가 지휘하고, 목자가 준비하며, VIP의 심금을 울리는 화음의 공동체</div>
+                        </div>
+                        <div class="glory-item">
+                            <div class="glory-icon">🏆</div>
+                            <div class="glory-title">천국의 상급</div>
+                            <div class="glory-desc">이 땅의 평가가 아닌 천국의 상급을 바라보는 영원한 투자</div>
+                        </div>
+                        <div class="glory-item">
+                            <div class="glory-icon">🌳</div>
+                            <div class="glory-title">대를 잇는 축복</div>
+                            <div class="glory-desc">올리브 블레싱으로 자녀와 신앙을 공유하며 대를 잇는 축복의 통로</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            slideIndex++;
+
+            // ========== TRANSITION SLIDE ==========
+            html += `
+                <div class="slide bg-gold" data-index="${slideIndex}">
+                    <div class="particles" id="particles-${slideIndex}"></div>
+                    <p class="dream-tag">"주님이 꿈꾸시는 교회"</p>
+                    <p class="dream-tag-en">The Church the Lord Dreams Of</p>
+                    <h1 class="main-title" style="font-size:clamp(36px,5vw,60px);">가정교회<br><span class="gold-text">100가지 지혜</span></h1>
+                    <p class="subtitle" style="margin-top:30px;">이제 가정교회의 구체적인 지혜를 만나보세요</p>
+                    <div class="chapter-nav">
+                        <button class="chapter-btn" onclick="goToSlide(${slideIndex + 2})"><span>✝</span> 영적 성장</button>
+                        <button class="chapter-btn" onclick="goToSlide(${slideIndex + 28})"><span>🤝</span> 관계의 축복</button>
+                        <button class="chapter-btn" onclick="goToSlide(${slideIndex + 54})"><span>💎</span> 인생의 지혜</button>
+                        <button class="chapter-btn" onclick="goToSlide(${slideIndex + 80})"><span>👑</span> 리더십</button>
+                    </div>
+                </div>
+            `;
+            slideIndex++;
+
+            // ========== 100가지 지혜 카드 ==========
+            const categories = ["영적 성장", "관계의 축복", "인생의 지혜", "리더십"];
+            const categoryBgs = {
+                "영적 성장": "linear-gradient(135deg, #78350f 0%, #92400e 50%, #b45309 100%)",
+                "관계의 축복": "linear-gradient(135deg, #064e3b 0%, #065f46 50%, #047857 100%)",
+                "인생의 지혜": "linear-gradient(135deg, #312e81 0%, #4c1d95 50%, #5b21b6 100%)",
+                "리더십": "linear-gradient(135deg, #7f1d1d 0%, #991b1b 50%, #b91c1c 100%)"
+            };
+
+            categories.forEach((cat, catIdx) => {
+                const config = categoryConfig[cat];
+                const catEnglish = { "영적 성장": "Spiritual Growth", "관계의 축복": "Blessing of Community", "인생의 지혜": "Wisdom for Life", "리더십": "Leadership" };
+                const ranges = { "영적 성장": "1-25", "관계의 축복": "26-50", "인생의 지혜": "51-75", "리더십": "76-100" };
+
+                // Category intro
+                html += `
+                    <div class="slide" data-index="${slideIndex}" style="background: ${categoryBgs[cat]};">
+                        <div class="particles" id="particles-${slideIndex}"></div>
+                        <div style="font-size:90px; margin-bottom:25px; animation: pulse 2s infinite;">${config.icon}</div>
+                        <p style="color:rgba(255,255,255,0.5); font-size:16px; letter-spacing:4px; margin-bottom:12px;">WISDOM CHAPTER ${catIdx + 1}</p>
+                        <h1 class="main-title" style="font-size:clamp(42px,7vw,80px);">${cat}</h1>
+                        <p class="subtitle-en" style="font-size:22px; margin-top:12px;">${catEnglish[cat]}</p>
+                        <div style="margin-top:35px; padding:12px 35px; border:2px solid rgba(255,255,255,0.3); border-radius:50px; background:rgba(255,255,255,0.1);">
+                            <span style="font-size:18px; font-weight:700;">#${ranges[cat]}</span>
+                        </div>
+                    </div>
+                `;
+                slideIndex++;
+
+                // Wisdom cards
+                const startIdx = catIdx * 25;
+                for (let i = 0; i < 25; i++) {
+                    const wisdom = wisdomData[startIdx + i];
+                    const wisdomNum = startIdx + i + 1;
+                    html += `
+                        <div class="slide" data-index="${slideIndex}" style="background: ${categoryBgs[cat]};">
+                            <div class="particles" id="particles-${slideIndex}"></div>
+                            <div class="section-number">${wisdomNum}</div>
+                            <div class="section-label" style="background: ${config.color}25; border-color: ${config.color};">${wisdom.cat} · ${wisdom.catEn}</div>
+                            <div style="position:relative; max-width:900px;">
+                                <span style="position:absolute; left:-25px; top:-35px; font-size:100px; opacity:0.12; font-family:'Playfair Display',serif; color:${config.color};">"</span>
+                                <h2 class="main-title" style="font-size:clamp(22px,3.5vw,42px); line-height:1.6;">${wisdom.ko}</h2>
+                                <span style="position:absolute; right:-25px; bottom:-50px; font-size:100px; opacity:0.12; font-family:'Playfair Display',serif; color:${config.color};">"</span>
+                            </div>
+                            <p class="subtitle-en" style="max-width:800px; margin-top:25px; font-size:clamp(14px,1.8vw,20px);">${wisdom.en}</p>
+                            <div style="display:flex; align-items:center; gap:18px; margin-top:40px;">
+                                <div style="width:70px; height:2px; background:rgba(255,255,255,0.3);"></div>
+                                <span style="font-size:35px;">${config.icon}</span>
+                                <div style="width:70px; height:2px; background:rgba(255,255,255,0.3);"></div>
+                            </div>
+                        </div>
+                    `;
+                    slideIndex++;
+                }
+            });
+
+            // ========== CLOSING SLIDE ==========
+            html += `
+                <div class="slide bg-dark" data-index="${slideIndex}">
+                    <div class="particles" id="particles-${slideIndex}"></div>
+                    <div style="font-size:70px; margin-bottom:20px; animation: pulse 2s infinite;">🙏</div>
+                    <p class="dream-tag">"주님이 꿈꾸시는 교회"</p>
+                    <p class="dream-tag-en">The Church the Lord Dreams Of</p>
+                    <h1 class="main-title" style="font-size:clamp(32px,5vw,56px);">우리는 <span class="gold-text">가정교회</span>입니다</h1>
+                    <p class="subtitle-en" style="font-size:20px; margin-top:10px;">We are House Church</p>
+                    <div style="display:flex; gap:18px; margin:40px 0; flex-wrap:wrap; justify-content:center;">
+                        <div style="padding:18px 25px; background:rgba(255,255,255,0.08); border-radius:15px; text-align:center;">
+                            <span style="font-size:30px;">⛪</span><p style="font-size:13px; margin-top:8px; opacity:0.8;">복음의 희망</p>
+                        </div>
+                        <div style="padding:18px 25px; background:rgba(255,255,255,0.08); border-radius:15px; text-align:center;">
+                            <span style="font-size:30px;">🏺</span><p style="font-size:13px; margin-top:8px; opacity:0.8;">믿음의 그릇</p>
+                        </div>
+                        <div style="padding:18px 25px; background:rgba(255,255,255,0.08); border-radius:15px; text-align:center;">
+                            <span style="font-size:30px;">⚠️</span><p style="font-size:13px; margin-top:8px; opacity:0.8;">영적 경고</p>
+                        </div>
+                        <div style="padding:18px 25px; background:rgba(255,255,255,0.08); border-radius:15px; text-align:center;">
+                            <span style="font-size:30px;">🌟</span><p style="font-size:13px; margin-top:8px; opacity:0.8;">목자의 영광</p>
+                        </div>
+                    </div>
+                    <div style="border-top:1px solid rgba(255,255,255,0.2); padding-top:35px; margin-top:20px;">
+                        <p style="font-size:24px; font-weight:700;">시애틀지구촌교회</p>
+                        <p style="color:var(--gold); margin-top:8px;">가정교회 사역부</p>
+                        <a href="https://www.ijiguchon.org" target="_blank" style="display:inline-block; margin-top:18px; padding:12px 30px; background:rgba(212,175,55,0.15); border-radius:50px; color:var(--gold); text-decoration:none; font-weight:700; animation: glow 2s infinite;">www.ijiguchon.org</a>
+                    </div>
+                </div>
+            `;
+            slideIndex++;
+
+            container.innerHTML = html;
+            totalSlides = slideIndex;
+            document.getElementById('total-slides').textContent = totalSlides;
+
+            // Create particles
+            for (let i = 0; i < totalSlides; i++) {
+                createParticles(i);
+            }
+
+            // Build quick nav
+            buildQuickNav();
+        }
+
+        function createParticles(slideIndex) {
+            const container = document.getElementById(`particles-${slideIndex}`);
+            if (!container) return;
+            for (let i = 0; i < 25; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                const size = Math.random() * 5 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.background = `rgba(255, 215, 0, ${Math.random() * 0.4 + 0.2})`;
+                particle.style.animationDuration = (Math.random() * 15 + 12) + 's';
+                particle.style.animationDelay = (Math.random() * 8) + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        function buildQuickNav() {
+            const nav = document.getElementById('quickNav');
+            const buttons = [
+                { label: '시작', slide: 0 },
+                { label: '4가지 가치', slide: 1 },
+                { label: '복음의 희망', slide: 2 },
+                { label: '착한 양심', slide: 5 },
+                { label: '양심 둔감화', slide: 8 },
+                { label: '목자의 영광', slide: 11 },
+                { label: '100가지 지혜', slide: 14 },
+                { label: '마침', slide: totalSlides - 1 }
+            ];
+            nav.innerHTML = buttons.map(b => 
+                `<button class="quick-btn" onclick="goToSlide(${b.slide})">${b.label}</button>`
+            ).join('');
+        }
+
+        function goToSlide(index) {
+            if (index < 0 || index >= totalSlides) return;
+            document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+            const target = document.querySelector(`.slide[data-index="${index}"]`);
+            if (target) {
+                target.classList.add('active');
+                currentSlide = index;
+                updateUI();
+            }
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) goToSlide(currentSlide + 1);
+            else if (isPlaying) togglePlay();
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) goToSlide(currentSlide - 1);
+        }
+
+        function togglePlay() {
+            isPlaying = !isPlaying;
+            document.getElementById('play-btn').textContent = isPlaying ? '⏸' : '▶';
+            if (isPlaying) playInterval = setInterval(nextSlide, 6000);
+            else clearInterval(playInterval);
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+            else document.exitFullscreen();
+        }
+
+        function updateUI() {
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+            document.getElementById('progress-bar').style.width = ((currentSlide + 1) / totalSlides * 100) + '%';
+        }
+
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'ArrowRight': case ' ': e.preventDefault(); nextSlide(); break;
+                case 'ArrowLeft': prevSlide(); break;
+                case 'p': case 'P': togglePlay(); break;
+                case 'f': case 'F': toggleFullscreen(); break;
+                case 'Home': goToSlide(0); break;
+                case 'End': goToSlide(totalSlides - 1); break;
+            }
+        });
+
+        let touchStartX = 0;
+        document.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
+        document.addEventListener('touchend', e => {
+            const diff = touchStartX - e.changedTouches[0].screenX;
+            if (Math.abs(diff) > 50) diff > 0 ? nextSlide() : prevSlide();
+        });
+
+        let controlsTimeout;
+        document.addEventListener('mousemove', () => {
+            document.getElementById('controls').classList.remove('hidden');
+            clearTimeout(controlsTimeout);
+            controlsTimeout = setTimeout(() => {
+                if (isPlaying) document.getElementById('controls').classList.add('hidden');
+            }, 3000);
+        });
+
+        generateSlides();
+        updateUI();
+    </script>
+</body>
+</html>
